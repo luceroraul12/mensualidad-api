@@ -36,6 +36,20 @@ class FacturaRepositoryTest {
         int resultado = facturaRepository.findAll().size();
 
         assertEquals(3, resultado);
-
     }
+
+    @Test
+    void testIdDeServicio(){
+        List<Factura> resultado = facturaRepository.findAll();
+
+        assertNotNull(resultado.get(0));
+    }
+
+    @Test
+    void testIdDeServicioNumero(){
+        List<Factura> resultado = facturaRepository.findAll();
+
+        assertEquals(1,resultado.get(0).getId());
+    }
+
 }
