@@ -16,9 +16,9 @@ public interface MensualidadService {
     /**
      * Busca facturas que han pagado y no pagaron.
      * @param fecha a la que se quiere comprobar. no debe ser null
-     * @return conujunto Cargado y No Cargado
+     * @return conujunto Cargado y No Cargado. 0 = Cargado, 1 = Faltante.
      */
-    List<Factura> getfacturasCargadasFaltantesByFecha(LocalDate fecha);
+    List<List<Factura>> getfacturasCargadasFaltantesByFecha(LocalDate fecha);
     List<Pago> getPagosByFecha(LocalDate fecha);
 
 }
