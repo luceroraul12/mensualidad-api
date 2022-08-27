@@ -3,6 +3,7 @@ package Models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -13,6 +14,9 @@ public class Pago {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private UUID id;
+
+    @Column(name = "fecha-pago")
+    private LocalDate fechaPago;
 
     @ManyToOne
     @JoinColumn(name = "subscripcion_id", referencedColumnName = "id-subscripcion" )
