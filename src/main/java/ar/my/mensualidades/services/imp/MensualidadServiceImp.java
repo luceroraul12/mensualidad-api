@@ -18,6 +18,11 @@ public class MensualidadServiceImp implements MensualidadService {
     @Autowired
     PagoRepository pagoRepository;
 
+    public MensualidadServiceImp(FacturaRepository facturaRepository, PagoRepository pagoRepository) {
+        this.facturaRepository = facturaRepository;
+        this.pagoRepository = pagoRepository;
+    }
+
     @Override
     public List<Factura> getallFacturas() {
         return facturaRepository.findAll();
@@ -29,24 +34,27 @@ public class MensualidadServiceImp implements MensualidadService {
     }
 
     @Override
-    public List<Factura> getfacturasCargadasFaltantesByFecha(LocalDate fecha) {
+    public List<List<Factura>> getfacturasCargadasFaltantesByFecha(LocalDate fecha) {
         List<Factura> facturasTotales = facturaRepository.findAll();
+        List<Pago> pagosObtenidos = pagoRepository.buscarPorMesyAnio(fecha);
+
         List<Factura> facturasObtenidasDePagos = new ArrayList<>();
+        List<List<Factura>> resultado = new ArrayList<>();
 
-        List<Factura> facturasCargadas;
-        List<Factura> facturasFaltantes;
+        List<Factura> facturasCargadas = new ArrayList<>();
+        List<Factura> facturasFaltantes = new ArrayList<>();
 
-        pagoRepository.findByFechaDePago(fecha).stream().map(pago -> facturasObtenidasDePagos.add(pago.getFactura()));
-
-
-        facturasCargadas = facturasObtenidasDePagos;
+        for (Pago p : pagosObtenidos){
+            facturasCargadas.add(p.getFactura());
+        }
 
         facturasFaltantes = facturasTotales;
         facturasFaltantes.removeAll(facturasCargadas);
 
+        resultado.add(facturasCargadas);
+        resultado.add(facturasFaltantes);
 
-
-        return null;
+        return resultado;
     }
 
     @Override
