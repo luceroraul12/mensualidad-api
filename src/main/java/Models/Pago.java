@@ -15,11 +15,27 @@ public class Pago {
     @Column(name = "id", nullable = false)
     private UUID id;
 
-    @Column(name = "fecha-pago")
+    @Column(name = "costo-pago", nullable = false)
+    private Double costo;
+
+    @Column(name = "fecha-pago", nullable = false)
     private LocalDate fechaPago;
 
     @ManyToOne
     @JoinColumn(name = "subscripcion_id", referencedColumnName = "id-subscripcion" )
     private Subscripcion subscripcion;
 
+
+    public Pago(UUID id, Double costo, LocalDate fechaPago, Subscripcion subscripcion) {
+        this.id = id;
+        this.costo = costo;
+        this.fechaPago = fechaPago;
+        this.subscripcion = subscripcion;
+    }
+
+    public Pago(Double costo, LocalDate fechaPago, Subscripcion subscripcion) {
+        this.costo = costo;
+        this.fechaPago = fechaPago;
+        this.subscripcion = subscripcion;
+    }
 }

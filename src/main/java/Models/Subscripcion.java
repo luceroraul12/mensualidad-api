@@ -1,6 +1,7 @@
 package Models;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -19,6 +20,10 @@ public class Subscripcion {
 
     public Subscripcion(UUID id, String nombre) {
         this.id = id;
+        this.nombre = nombre;
+    }
+
+    public Subscripcion(String nombre) {
         this.nombre = nombre;
     }
 }
