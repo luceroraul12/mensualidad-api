@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.Pago;
 import Models.Subscripcion;
 import Services.MensualidadService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,9 @@ public class MensualidadController {
 
     public List<Subscripcion> getAllSubs(){
         return this.mensualidadService.getAllSubscripciones();
+    }
+
+    public List<Pago> getAllPagos(){
+        return this.mensualidadService.getAllPagos();
     }
 }
