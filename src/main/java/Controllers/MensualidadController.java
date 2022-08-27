@@ -15,8 +15,11 @@ public class MensualidadController {
     @Autowired
     private MensualidadService mensualidadService;
 
+    public MensualidadController(MensualidadService mensualidadService) {
+        this.mensualidadService = mensualidadService;
+    }
 
     public List<Subscripcion> getAllSubs(){
-        return mensualidadService.getAllSubscripciones();
+        return this.mensualidadService.getAllSubscripciones();
     }
 }
