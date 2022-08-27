@@ -11,10 +11,10 @@ import java.util.UUID;
 public class Subscripcion {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id-subscripcion", nullable = false)
     private UUID id;
 
-    @Column(name = "nombre", nullable = false)
+    @Column(name = "nombre-subscripcion", nullable = false)
     private String nombre;
 
 }
