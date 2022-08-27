@@ -51,14 +51,14 @@ class PagoRepositoryTest {
 
     @Test
     void traerPagosPorMesyAño(){
-        List<Pago> resultado = pagoRepository.buscarPorMesyAnio(LocalDate.now());
+        List<Pago> resultado = pagoRepository.buscarPorMesyAño(LocalDate.now());
 
         assertEquals(1, resultado.size());
     }
 
     @Test
     void traerPagosPorMesyAñoMal(){
-        List<Pago> resultado = pagoRepository.buscarPorMesyAnio(LocalDate.of(2024,12,20));
+        List<Pago> resultado = pagoRepository.buscarPorMesyAño(LocalDate.of(2024,12,20));
 
         assertEquals(0, resultado.size());
     }

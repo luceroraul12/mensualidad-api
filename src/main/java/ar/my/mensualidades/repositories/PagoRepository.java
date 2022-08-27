@@ -9,9 +9,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface PagoRepository extends JpaRepository<Pago, Long> {
-    List<Pago> findByFechaDePago(LocalDate fechaDePago);
-
-
     /**
      * Metodo para obtener los pagos que tengan el mismo mes y año de la fecha ingresada.
      * @param fechaDePago no debe ser null
@@ -19,7 +16,7 @@ public interface PagoRepository extends JpaRepository<Pago, Long> {
      */
     @Query("select p from Pago p where year(p.fechaDePago) = year(:fechaDePago)" +
             "and month(p.fechaDePago) = month(:fechaDePago)")
-    List<Pago> buscarPorMesyAnio(@Param("fechaDePago") LocalDate fechaDePago);
+    List<Pago> buscarPorMesyAño(@Param("fechaDePago") LocalDate fechaDePago);
 
 
 
