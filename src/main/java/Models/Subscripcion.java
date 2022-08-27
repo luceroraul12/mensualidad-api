@@ -17,4 +17,8 @@ public class Subscripcion {
     @Column(name = "nombre-subscripcion", nullable = false)
     private String nombre;
 
+    public Subscripcion(UUID id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
 }
