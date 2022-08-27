@@ -18,7 +18,7 @@ public interface MensualidadService {
      * @param fecha a la que se quiere comprobar. no debe ser null
      * @return conujunto Cargado y No Cargado
      */
-    List<Factura> getFacturasConySinCargaByFecha(LocalDate fecha);
+    List<Factura> getfacturasCargadasFaltantesByFecha(LocalDate fecha);
     List<Pago> getPagosByFecha(LocalDate fecha);
 
 }
