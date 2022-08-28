@@ -60,6 +60,52 @@ public class MensualidadServiceImp implements MensualidadService {
         return resultado;
     }
 
+    @Override
+    public MensualidadResponse createFactura(Factura factura) {
+        MensualidadResponse resultado = new MensualidadResponse();
+        resultado.setFacturaTrabajada(facturaRepository.save(factura));
+        return resultado;
+    }
+
+    @Override
+    public MensualidadResponse updateFactura(Factura factura) {
+        MensualidadResponse resultado = new MensualidadResponse();
+        resultado.setFacturaTrabajada(facturaRepository.save(factura));
+        return resultado;
+    }
+
+    @Override
+    public MensualidadResponse deleteFactura(Factura factura) {
+        MensualidadResponse resultado = new MensualidadResponse();
+        Factura facturaGuardada = facturaRepository.findById(factura.getId()).get();
+        resultado.setFacturaTrabajada(facturaGuardada);
+        facturaRepository.delete(facturaGuardada);
+        return resultado;
+    }
+
+    @Override
+    public MensualidadResponse createPago(Pago pago) {
+        MensualidadResponse resultado = new MensualidadResponse();
+        resultado.setPagoTrabajado(pagoRepository.save(pago));
+        return resultado;
+    }
+
+    @Override
+    public MensualidadResponse updatePago(Pago pago) {
+        MensualidadResponse resultado = new MensualidadResponse();
+        resultado.setPagoTrabajado(pagoRepository.save(pago));
+        return resultado;
+    }
+
+    @Override
+    public MensualidadResponse deletePago(Pago pago) {
+        MensualidadResponse resultado = new MensualidadResponse();
+        Pago pagoGuardado = pagoRepository.findById(pago.getId()).get();
+        resultado.setPagoTrabajado(pagoGuardado);
+        pagoRepository.delete(pagoGuardado);
+        return resultado;
+    }
+
     private double calcularCosto(List<Pago> pagosObtenidos) {
         double resultado = 0;
         for (Pago pago : pagosObtenidos){
@@ -67,5 +113,4 @@ public class MensualidadServiceImp implements MensualidadService {
         }
         return resultado;
     }
-
 }
