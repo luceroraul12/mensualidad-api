@@ -15,7 +15,7 @@ public class Factura {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column
+    @Column(name = "nombre")
     private String nombre;
 
     public Factura(String nombre) {
