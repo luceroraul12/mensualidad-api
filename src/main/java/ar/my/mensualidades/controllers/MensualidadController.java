@@ -70,7 +70,7 @@ public class MensualidadController {
         return mensualidadService.getAllPagos();
     }
     @PostMapping("/pagos")
-    public ResponseEntity createFactura(
+    public ResponseEntity createPagos(
             @RequestParam("id-servicio") Long idServicio,
             @RequestParam("costo") Double costoPagado,
             @RequestParam("fecha") String fechaDelPago){
@@ -83,6 +83,25 @@ public class MensualidadController {
         pago.setFactura(factura);
 
         MensualidadResponse resultado = mensualidadService.createPago(pago);
+        return new ResponseEntity(resultado, HttpStatus.OK);
+    }
+
+    @PostMapping("/pagos/update")
+    public ResponseEntity updatePago(
+            @RequestParam("id-pago") Long idPago,
+            @RequestParam("id-factura") Long idFactura,
+            @RequestParam("costo") Double costoPagado,
+            @RequestParam("fecha") String fechaDelPago){
+
+        Factura factura = new Factura();
+        factura.setId(idFactura);
+        Pago pago = new Pago();
+        pago.setId(idPago);
+        pago.setPago(costoPagado);
+        pago.setFechaDePago(LocalDate.parse(fechaDelPago));
+        pago.setFactura(factura);
+
+        MensualidadResponse resultado = mensualidadService.updatePago(pago);
         return new ResponseEntity(resultado, HttpStatus.OK);
     }
 
