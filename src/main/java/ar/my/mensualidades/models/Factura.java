@@ -12,7 +12,6 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @Table(name = "factura")
-@NoArgsConstructor
 public class Factura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
