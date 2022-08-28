@@ -45,8 +45,8 @@ class MensualidadServiceImpTest {
     }
 
     @Test
-    void getfacturasCargadasFaltantesByFecha() {
-        MensualidadResponse resultadoObtenido = mensualidadService.getfacturasCargadasFaltantesByFecha(LocalDate.now());
+    void getMensual() {
+        MensualidadResponse resultadoObtenido = mensualidadService.getResumenMensual(LocalDate.now());
         List<Factura> conjuntoCargadoEsperado = new ArrayList<>();
         List<Factura> conjuntoFaltanteEsperado = new ArrayList<>();
 
@@ -59,4 +59,6 @@ class MensualidadServiceImpTest {
         assertArrayEquals(conjuntoFaltanteEsperado.toArray(), resultadoObtenido.getFacturasFaltantes().toArray());
         assertEquals(300.50, resultadoObtenido.getCostoTotalPagado());
     }
+
+
 }
