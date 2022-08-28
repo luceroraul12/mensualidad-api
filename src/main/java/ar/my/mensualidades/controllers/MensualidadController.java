@@ -39,7 +39,20 @@ public class MensualidadController {
 
     @PostMapping("/facturas")
     public ResponseEntity createFactura(@RequestParam("nombre-servicio") String nombreServicio){
-        Factura resultado = facturaRepository.save(new Factura(nombreServicio));
+        MensualidadResponse resultado = mensualidadService.createFactura(new Factura(nombreServicio));
+        return new ResponseEntity(resultado, HttpStatus.OK);
+    }
+
+    @PostMapping("/facturas/update")
+    public ResponseEntity createFactura(
+            @RequestParam("id") Long id,
+            @RequestParam("nombre-servicio") String nombreServicio){
+
+        Factura factura = new Factura();
+        factura.setId(id);
+        factura.setNombre(nombreServicio);
+
+        MensualidadResponse resultado = mensualidadService.updateFactura(factura);
         return new ResponseEntity(resultado, HttpStatus.OK);
     }
 
