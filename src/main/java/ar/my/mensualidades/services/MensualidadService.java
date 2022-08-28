@@ -1,5 +1,7 @@
 package ar.my.mensualidades.services;
 
+import ar.my.mensualidades.models.Factura;
+import ar.my.mensualidades.models.Pago;
 import ar.my.mensualidades.response.MensualidadResponse;
 import org.springframework.stereotype.Service;
 
@@ -18,4 +20,10 @@ public interface MensualidadService {
      */
     MensualidadResponse getResumenMensual(LocalDate fecha);
 
+    MensualidadResponse createFactura(Factura factura);
+    MensualidadResponse updateFactura(Factura factura);
+    MensualidadResponse deleteFactura(Factura factura);
+    MensualidadResponse createPago(Pago pago);
+    MensualidadResponse updatePago(Pago pago);
+    MensualidadResponse deletePago(Pago pago);
 }
