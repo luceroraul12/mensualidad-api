@@ -1,5 +1,6 @@
 package ar.my.mensualidades.controllers;
 
+import ar.my.mensualidades.models.Factura;
 import ar.my.mensualidades.repositories.FacturaRepository;
 import ar.my.mensualidades.repositories.PagoRepository;
 import ar.my.mensualidades.response.MensualidadResponse;
@@ -38,8 +39,8 @@ public class MensualidadController {
 
     @PostMapping("/facturas")
     public ResponseEntity createFactura(@RequestParam("nombre-servicio") String nombreServicio){
-
-        return new ResponseEntity("creacion efectuada", HttpStatus.OK);
+        Factura resultado = facturaRepository.save(new Factura(nombreServicio));
+        return new ResponseEntity(resultado, HttpStatus.OK);
     }
 
     /**
