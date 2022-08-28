@@ -13,10 +13,9 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @Table(name = "pago")
-@NoArgsConstructor
 public class Pago {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
