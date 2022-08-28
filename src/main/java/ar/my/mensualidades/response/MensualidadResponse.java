@@ -13,6 +13,8 @@ public class MensualidadResponse {
     private List<Factura> facturasFaltantes;
     private List<Pago> pagosCreados;
     private List<Pago> pagosCargados;
+    private Factura facturaTrabajada;
+    private Pago pagoTrabajado;
     private Double costoTotalPagado;
 
 }
