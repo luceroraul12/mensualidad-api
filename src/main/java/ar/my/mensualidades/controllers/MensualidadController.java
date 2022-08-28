@@ -42,7 +42,7 @@ public class MensualidadController {
     }
 
     @PostMapping("/facturas/update")
-    public ResponseEntity createFactura(
+    public ResponseEntity updateFactura(
             @RequestParam("id") Long id,
             @RequestParam("nombre-servicio") String nombreServicio){
 
@@ -55,7 +55,7 @@ public class MensualidadController {
     }
 
     @DeleteMapping("/facturas/delete")
-    public ResponseEntity createFactura(@RequestParam("id") Long id){
+    public ResponseEntity deleteFactura(@RequestParam("id") Long id){
         Factura factura = new Factura();
         factura.setId(id);
         MensualidadResponse resultado = mensualidadService.deleteFactura(factura);
@@ -102,6 +102,14 @@ public class MensualidadController {
         pago.setFactura(factura);
 
         MensualidadResponse resultado = mensualidadService.updatePago(pago);
+        return new ResponseEntity(resultado, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/pagos/delete")
+    public ResponseEntity deletePago(@RequestParam("id") Long id){
+        Pago pago = new Pago();
+        pago.setId(id);
+        MensualidadResponse resultado = mensualidadService.deletePago(pago);
         return new ResponseEntity(resultado, HttpStatus.OK);
     }
 
