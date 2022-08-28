@@ -21,7 +21,7 @@ public class Pago {
     private LocalDate fechaDePago;
 
     @ManyToOne
-    @JoinColumn(name = "factura_id")
+    @JoinColumn(name = "factura_id", referencedColumnName = "id")
     private Factura factura;
 
     public Pago(Double pago, LocalDate fechaDePago, Factura factura) {
