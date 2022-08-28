@@ -1,5 +1,6 @@
 package ar.my.mensualidades.services.imp;
 
+import ar.my.mensualidades.response.MensualidadResponse;
 import ar.my.mensualidades.models.Factura;
 import ar.my.mensualidades.models.Pago;
 import ar.my.mensualidades.repositories.FacturaRepository;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MensualidadServiceImp implements MensualidadService {
 
@@ -34,31 +36,35 @@ public class MensualidadServiceImp implements MensualidadService {
     }
 
     @Override
-    public List<List<Factura>> getfacturasCargadasFaltantesByFecha(LocalDate fecha) {
-        List<Factura> facturasTotales = facturaRepository.findAll();
-        List<Pago> pagosObtenidos = pagoRepository.buscarPorMesyAnio(fecha);
+    public MensualidadResponse getfacturasCargadasFaltantesByFecha(LocalDate fecha) {
+        List<Factura> facturasTotales = getallFacturas();
+        List<Pago> pagosObtenidos = pagoRepository.buscarPorMesyAño(fecha);
 
         List<Factura> facturasObtenidasDePagos = new ArrayList<>();
-        List<List<Factura>> resultado = new ArrayList<>();
+        MensualidadResponse resultado = new MensualidadResponse();
 
         List<Factura> facturasCargadas = new ArrayList<>();
         List<Factura> facturasFaltantes = new ArrayList<>();
 
-        for (Pago p : pagosObtenidos){
-            facturasCargadas.add(p.getFactura());
-        }
+        facturasCargadas = pagosObtenidos.stream().map(Pago::getFactura).collect(Collectors.toList());
 
         facturasFaltantes = facturasTotales;
         facturasFaltantes.removeAll(facturasCargadas);
 
-        resultado.add(facturasCargadas);
-        resultado.add(facturasFaltantes);
+        resultado.setFacturasCargadas(facturasCargadas);
+        resultado.setFacturasFaltantes(facturasFaltantes);
+        resultado.setCostoTotalPagado(calcularCosto(pagosObtenidos));
+        return resultado;
+    }
+
+    private double calcularCosto(List<Pago> pagosObtenidos) {
+        double resultado = 0;
+        
+        for (Pago pago : pagosObtenidos){
+            resultado+= pago.getPago();
+        }
 
         return resultado;
     }
 
-    @Override
-    public List<Pago> getPagosByFecha(LocalDate fecha) {
-        return pagoRepository.findByFechaDePago(fecha);
-    }
 }
