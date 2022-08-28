@@ -1,6 +1,7 @@
 package ar.my.mensualidades.controllers;
 
 import ar.my.mensualidades.models.Factura;
+import ar.my.mensualidades.models.Pago;
 import ar.my.mensualidades.repositories.FacturaRepository;
 import ar.my.mensualidades.repositories.PagoRepository;
 import ar.my.mensualidades.response.MensualidadResponse;
@@ -67,6 +68,22 @@ public class MensualidadController {
     @GetMapping("/pagos")
     public MensualidadResponse getAllPagos(){
         return mensualidadService.getAllPagos();
+    }
+    @PostMapping("/pagos")
+    public ResponseEntity createFactura(
+            @RequestParam("id-servicio") Long idServicio,
+            @RequestParam("costo") Double costoPagado,
+            @RequestParam("fecha") String fechaDelPago){
+
+        Factura factura = new Factura();
+        factura.setId(idServicio);
+        Pago pago = new Pago();
+        pago.setPago(costoPagado);
+        pago.setFechaDePago(LocalDate.parse(fechaDelPago));
+        pago.setFactura(factura);
+
+        MensualidadResponse resultado = mensualidadService.createPago(pago);
+        return new ResponseEntity(resultado, HttpStatus.OK);
     }
 
     /**
