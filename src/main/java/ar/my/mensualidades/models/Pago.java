@@ -1,6 +1,7 @@
 package ar.my.mensualidades.models;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 @Entity
 @Data
 @Table(name = "pago")
+@NoArgsConstructor
 public class Pago {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
