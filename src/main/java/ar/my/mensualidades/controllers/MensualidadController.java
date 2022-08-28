@@ -8,10 +8,7 @@ import ar.my.mensualidades.services.MensualidadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
@@ -56,6 +53,13 @@ public class MensualidadController {
         return new ResponseEntity(resultado, HttpStatus.OK);
     }
 
+    @DeleteMapping("/facturas/delete")
+    public ResponseEntity createFactura(@RequestParam("id") Long id){
+        Factura factura = new Factura();
+        factura.setId(id);
+        MensualidadResponse resultado = mensualidadService.deleteFactura(factura);
+        return new ResponseEntity(resultado, HttpStatus.OK);
+    }
     /**
      * Metodo por el cual se puede obtener todos los pagos creados
      * @return
