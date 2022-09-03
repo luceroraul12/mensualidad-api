@@ -8,13 +8,15 @@ import java.util.List;
 
 @Data
 public class MensualidadResponse {
-    private List<Factura> facturasCreadas;
+    private List<Pago> pagosCargados;
     private List<Factura> facturasCargadas;
     private List<Factura> facturasFaltantes;
+    private Double costoTotalPagado;
+
+    private List<Factura> facturasCreadas;
     private List<Pago> pagosCreados;
-    private List<Pago> pagosCargados;
+
     private Factura facturaTrabajada;
     private Pago pagoTrabajado;
-    private Double costoTotalPagado;
 
 }
