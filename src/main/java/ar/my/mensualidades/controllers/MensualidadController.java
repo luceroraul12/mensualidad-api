@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 
 @RestController
+@RequestMapping("api")
 public class MensualidadController {
 
     @Autowired MensualidadService mensualidadService;
