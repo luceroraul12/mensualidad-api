@@ -4,11 +4,11 @@ import ar.my.mensualidades.models.ModeloMensualidad;
 
 import java.util.List;
 
-public interface ActividadesCrud {
+public interface ActividadesCrud<Entidad extends ModeloMensualidad> {
 
-    public ModeloMensualidad crear(ModeloMensualidad modeloMensualidad) throws Exception;
-    public ModeloMensualidad modificar(ModeloMensualidad modeloMensualidad) throws Exception;
-    public ModeloMensualidad eliminar(ModeloMensualidad modeloMensualidad) throws Exception;
-    public List<ModeloMensualidad> leer();
+    public Entidad crear(Entidad modeloMensualidad) throws Exception;
+    public Entidad modificar(Entidad modeloMensualidad) throws Exception;
+    public Entidad eliminar(Entidad modeloMensualidad) throws Exception;
+    public List<Entidad> leer();
 
 }

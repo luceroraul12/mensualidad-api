@@ -6,14 +6,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public abstract class MensualidadAbstractService implements ActividadesCrud{
+public abstract class MensualidadAbstractService<Entidad extends ModeloMensualidad> implements ActividadesCrud<Entidad>{
 
     @Autowired
-    JpaRepository<ModeloMensualidad, Long> repository;
+    JpaRepository<Entidad, Long> repository;
 
     @Override
-    public ModeloMensualidad crear(ModeloMensualidad modeloMensualidad) throws Exception {
-        ModeloMensualidad elementoCreado = repository.save(modeloMensualidad);
+    public Entidad crear(Entidad modeloMensualidad) throws Exception {
+        Entidad elementoCreado =  repository.save(modeloMensualidad);
         if (elementoCreado.getId() <= 0){
             throw new Exception("no se pudo crear");
         }
@@ -21,8 +21,8 @@ public abstract class MensualidadAbstractService implements ActividadesCrud{
     }
 
     @Override
-    public ModeloMensualidad modificar(ModeloMensualidad modeloMensualidad) throws Exception {
-        ModeloMensualidad elementoModificado = repository.save(modeloMensualidad);
+    public Entidad modificar(Entidad modeloMensualidad) throws Exception {
+        Entidad elementoModificado = repository.save(modeloMensualidad);
         if (elementoModificado.getId() <= 0){
             throw new Exception("no se pudo modificar");
         }
@@ -30,7 +30,7 @@ public abstract class MensualidadAbstractService implements ActividadesCrud{
     }
 
     @Override
-    public ModeloMensualidad eliminar(ModeloMensualidad modeloMensualidad) throws Exception {
+    public Entidad eliminar(Entidad modeloMensualidad) throws Exception {
         repository.deleteById(modeloMensualidad.getId());
         if (repository.existsById(modeloMensualidad.getId())){
             throw new Exception("no se pudo eliminar");
@@ -39,7 +39,7 @@ public abstract class MensualidadAbstractService implements ActividadesCrud{
     }
 
     @Override
-    public List<ModeloMensualidad> leer() {
+    public List<Entidad> leer() {
         return repository.findAll();
     }
 }
