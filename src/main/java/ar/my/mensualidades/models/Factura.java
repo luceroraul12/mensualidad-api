@@ -12,29 +12,12 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @Table(name = "factura")
-public class Factura {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class Factura extends ModeloMensualidad{
 
-    @Column(name = "nombre")
+    @Column
     private String nombre;
 
-    public Factura(String nombre) {
-        this.nombre = nombre;
-    }
+    @Column
+    private String url;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Factura factura = (Factura) o;
-        return id != null && Objects.equals(id, factura.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }
