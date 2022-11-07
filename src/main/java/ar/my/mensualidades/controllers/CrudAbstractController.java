@@ -5,8 +5,7 @@ import ar.my.mensualidades.services.MensualidadAbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,7 +15,7 @@ public abstract class CrudAbstractController<Modelo extends ModeloMensualidad> {
     MensualidadAbstractService<Modelo> service;
 
 
-    @GetMapping("crear")
+    @PostMapping("crear")
     public ResponseEntity<Modelo> crear(@RequestBody Modelo modelo){
         ResponseEntity<Modelo> respuesta;
         try {
@@ -27,7 +26,7 @@ public abstract class CrudAbstractController<Modelo extends ModeloMensualidad> {
         return respuesta;
     }
 
-    @GetMapping("modificar")
+    @PutMapping("modificar")
     public ResponseEntity<Modelo> modificar(@RequestBody Modelo modelo){
         ResponseEntity<Modelo> respuesta;
         try {
@@ -38,7 +37,7 @@ public abstract class CrudAbstractController<Modelo extends ModeloMensualidad> {
         return respuesta;
     }
 
-    @GetMapping("eliminar")
+    @DeleteMapping("eliminar")
     public ResponseEntity<Modelo> eliminar(@RequestBody Modelo modelo){
         ResponseEntity<Modelo> respuesta;
         try {
