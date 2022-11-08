@@ -10,6 +10,9 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "factura")
 public class Factura extends ModeloMensualidad{
 

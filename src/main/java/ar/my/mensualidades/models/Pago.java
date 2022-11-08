@@ -11,6 +11,9 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "pago")
 public class Pago extends ModeloMensualidad{
 
