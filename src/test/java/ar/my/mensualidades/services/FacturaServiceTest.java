@@ -60,7 +60,7 @@ class FacturaServiceTest {
 
     @Test
     void probarResumen(){
-        Map<String, Set<Factura>> resumen = facturaService.obtenerResumenFacturas(11,2022);
+        Map<String, Set<ModeloMensualidad>> resumen = facturaService.obtenerResumenFacturas(11,2022);
 
         assertEquals(2, resumen.get("pagados").size());
         assertEquals(2, resumen.get("impagos").size());
