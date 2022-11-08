@@ -10,6 +10,15 @@ import java.time.LocalDate;
 import java.util.List;
 @Repository
 public interface PagoRepository extends JpaRepository<Pago, Long> {
+    @Query("select p from Pago p where " +
+            "year(p.fechaDePago) = :anio " +
+            "and month(p.fechaDePago) = :mes")
+    List<Pago> obtenerPagosResumenMesyAnio(
+            @Param("mes") Integer mes,
+            @Param("anio") Integer anio
+    );
+
+
 
 
 }
