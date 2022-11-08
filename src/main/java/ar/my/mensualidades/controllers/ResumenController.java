@@ -6,10 +6,7 @@ import ar.my.mensualidades.repositories.PagoRepository;
 import ar.my.mensualidades.services.FacturaService;
 import ar.my.mensualidades.services.PagoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -17,6 +14,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin
 @RequestMapping("resumen")
 public class ResumenController {
 
@@ -26,7 +24,7 @@ public class ResumenController {
     @Autowired
     PagoRepository pagoRepository;
 
-    @PostMapping
+    @GetMapping
     public Map<String, Set<ModeloMensualidad>> obtenerResumen(
             @RequestParam("mes") Integer mes,
             @RequestParam("anio") Integer anio){
