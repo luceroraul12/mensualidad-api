@@ -23,6 +23,9 @@ public class Pago extends ModeloMensualidad{
     @Column
     private LocalDate fechaDePago;
 
+    @Column
+    private String comentario;
+
     @ManyToOne
     @JoinColumn(name = "factura_ID",nullable = false)
     private Factura factura;
