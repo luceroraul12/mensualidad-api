@@ -9,12 +9,12 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ar.my</groupId>
-	<artifactId>mensualidades</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>mensualidades</name>
+	<artifactId>mensualidad-api</artifactId>
+	<packaging>war</packaging>
+	<name>mensualidad-api</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>18</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -26,12 +26,19 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+<!--		cuando vaya a hacer un deplooy descomentar tomcat-->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-tomcat</artifactId>-->
+<!--			<scope>provided</scope>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
