@@ -1,10 +1,8 @@
 package ar.my.mensualidades.models;
 
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Getter
@@ -21,5 +19,8 @@ public class Factura extends ModeloMensualidad{
 
     @Column
     private String url;
+
+    @Column
+    private boolean esRepetible;
 
 }
