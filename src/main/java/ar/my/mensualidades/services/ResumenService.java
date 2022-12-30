@@ -6,10 +6,10 @@ import ar.my.mensualidades.models.Pago;
 import ar.my.mensualidades.repositories.FacturaRepository;
 import ar.my.mensualidades.repositories.PagoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.comparator.Comparators;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -36,9 +36,15 @@ public class ResumenService {
         Set<Factura> facturasPagadas = pagosRealizados.stream()
                 .map(Pago::getFactura).collect(Collectors.toSet());;
         Set<Factura> facturasImpagas = facturasExistentes.stream()
-                .filter(factura -> !facturasPagadas.contains(factura) & !factura.isEsRepetible())
-                .collect(Collectors.toSet());;
+                .filter(factura -> !facturasPagadas.contains(factura))
+                .collect(Collectors.toSet());
+        facturasImpagas.addAll(
+                facturasExistentes.stream().filter(Factura::isEsRepetible).collect(Collectors.toSet())
+        );
 
+        facturasImpagas = facturasImpagas.stream()
+                .sorted(Comparator.comparing(Factura::isEsRepetible))
+                .collect(Collectors.toSet());
         return new ResumenDto(facturasPagadas, facturasImpagas, pagosRealizados);
     }
 }
