@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.comparator.Comparators;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,7 +32,7 @@ public class ResumenService {
     }
     public ResumenDto generarResumen(List<Pago> pagosRealizados, List<Factura> facturasExistentes){
         Set<Factura> facturasPagadas = pagosRealizados.stream()
-                .map(Pago::getFactura).collect(Collectors.toSet());;
+                .map(Pago::getFactura).collect(Collectors.toSet());
         Set<Factura> facturasImpagas = facturasExistentes.stream()
                 .filter(factura -> !facturasPagadas.contains(factura))
                 .collect(Collectors.toSet());
@@ -43,8 +41,13 @@ public class ResumenService {
         );
 
         facturasImpagas = facturasImpagas.stream()
-                .sorted(Comparator.comparing(Factura::isEsRepetible))
-                .collect(Collectors.toSet());
+                .sorted((a,b) ->
+                        !a.isEsRepetible() & b.isEsRepetible()
+                                ? -1
+                                : a.isEsRepetible() & b.isEsRepetible()
+                                    ? 0
+                                    : 1)
+                .collect(Collectors.toCollection(LinkedHashSet::new));
         return new ResumenDto(facturasPagadas, facturasImpagas, pagosRealizados);
     }
 }
