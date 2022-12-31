@@ -16,10 +16,4 @@ public class PagoController extends CrudAbstractController<Pago>{
     @Autowired
     PagoRepository pagoRepository;
 
-    @PostMapping("resumen")
-    public List<Pago> obtenerResumen(
-            @RequestParam("mes") Integer mes,
-            @RequestParam("anio") Integer anio){
-        return pagoRepository.obtenerPagosResumenMesyAnio(mes, anio);
-    }
 }
