@@ -33,4 +33,12 @@ public class FacturaService extends MensualidadAbstractService<Factura> {
         return resumenFacturas;
     }
 
+    @Override
+    public List<Factura> leer() {
+        List<Factura> facturas = repository.findAll();
+        facturas.sort(
+                Comparator.comparing(Factura::isEsRepetible)
+                        .thenComparing(Factura::getNombre));
+        return facturas;
+    }
 }
