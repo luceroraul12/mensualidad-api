@@ -32,13 +32,22 @@ public class ResumenService {
     }
     public ResumenDto generarResumen(List<Pago> pagosRealizados, List<Factura> facturasExistentes){
         Set<Factura> facturasPagadas = pagosRealizados.stream()
-                .map(Pago::getFactura).collect(Collectors.toSet());
+                .map(Pago::getFactura)
+                .sorted((a,b) ->
+                        !a.isEsRepetible() & b.isEsRepetible()
+                                ? -1
+                                : a.isEsRepetible() & b.isEsRepetible()
+                                ? 0
+                                : 1)
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+
         Set<Factura> facturasImpagas = facturasExistentes.stream()
                 .filter(factura -> !facturasPagadas.contains(factura))
                 .collect(Collectors.toSet());
         facturasImpagas.addAll(
                 facturasExistentes.stream().filter(Factura::isEsRepetible).collect(Collectors.toSet())
         );
+
 
         facturasImpagas = facturasImpagas.stream()
                 .sorted((a,b) ->
