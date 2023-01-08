@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 @Entity
 @Getter
 @Setter
-public class UsuarioResumen extends ModeloMensualidad {
+public class UsuarioCosto extends ModeloMensualidad {
     @OneToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
