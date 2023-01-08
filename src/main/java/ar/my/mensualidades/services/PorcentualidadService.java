@@ -36,10 +36,14 @@ public class PorcentualidadService extends MensualidadAbstractService<Porcentual
                 porcentualidad.getUsuario().getId(),
                 porcentualidad.getFactura().getId()
         );
+        if(porcentualidadAlmacenada.isEmpty()){
+            return porcentualidad.getPorcentaje() <= 100;
+        }
         Double porcentajeTotalAlmacenado = porcentualidadAlmacenada.stream()
                 .map(Porcentualidad::getPorcentaje)
                 .reduce(Double::sum)
                 .get();
+        porcentajeTotalAlmacenado+= porcentualidad.getPorcentaje();
 
         return porcentajeTotalAlmacenado <= 100.0;
     }
