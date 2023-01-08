@@ -16,45 +16,45 @@ public abstract class CrudAbstractController<Modelo extends ModeloMensualidad> {
 
 
     @PostMapping("crear")
-    public ResponseEntity<Modelo> crear(@RequestBody Modelo modelo){
-        ResponseEntity<Modelo> respuesta;
+    public ResponseEntity<Object> crear(@RequestBody Modelo modelo){
+        ResponseEntity<Object> respuesta;
         try {
-            respuesta = new ResponseEntity<Modelo>(service.crear(modelo),HttpStatus.CREATED);
+            respuesta = new ResponseEntity<Object>(service.crear(modelo),HttpStatus.CREATED);
         } catch (Exception e) {
-            respuesta = new ResponseEntity<Modelo>(HttpStatus.INTERNAL_SERVER_ERROR);
+            respuesta = new ResponseEntity<Object>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return respuesta;
     }
 
     @PutMapping("modificar")
-    public ResponseEntity<Modelo> modificar(@RequestBody Modelo modelo){
-        ResponseEntity<Modelo> respuesta;
+    public ResponseEntity<Object> modificar(@RequestBody Modelo modelo){
+        ResponseEntity<Object> respuesta;
         try {
-            respuesta = new ResponseEntity<Modelo>(service.modificar(modelo),HttpStatus.OK);
+            respuesta = new ResponseEntity<Object>(service.modificar(modelo),HttpStatus.OK);
         } catch (Exception e) {
-            respuesta = new ResponseEntity<Modelo>(HttpStatus.INTERNAL_SERVER_ERROR);
+            respuesta = new ResponseEntity<Object>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return respuesta;
     }
 
     @DeleteMapping("eliminar")
-    public ResponseEntity<Modelo> eliminar(@RequestBody Modelo modelo){
-        ResponseEntity<Modelo> respuesta;
+    public ResponseEntity<Object> eliminar(@RequestBody Modelo modelo){
+        ResponseEntity<Object> respuesta;
         try {
-            respuesta = new ResponseEntity<Modelo>(service.eliminar(modelo),HttpStatus.OK);
+            respuesta = new ResponseEntity<Object>(service.eliminar(modelo),HttpStatus.OK);
         } catch (Exception e) {
-            respuesta = new ResponseEntity<Modelo>(HttpStatus.INTERNAL_SERVER_ERROR);
+            respuesta = new ResponseEntity<Object>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return respuesta;
     }
 
     @GetMapping("leer")
-    public ResponseEntity<List<Modelo>> leer(){
-        ResponseEntity<List<Modelo>> respuesta;
+    public ResponseEntity<Object> leer(){
+        ResponseEntity<Object> respuesta;
         try {
-            respuesta = new ResponseEntity<List<Modelo>>(service.leer(),HttpStatus.OK);
+            respuesta = new ResponseEntity<Object>(service.leer(),HttpStatus.OK);
         } catch (Exception e) {
-            respuesta = new ResponseEntity<List<Modelo>>(HttpStatus.INTERNAL_SERVER_ERROR);
+            respuesta = new ResponseEntity<Object>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return respuesta;
     }
