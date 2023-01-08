@@ -17,8 +17,8 @@ public class UsuarioCosto extends ModeloMensualidad {
     private Usuario usuario;
 
     @OneToOne
-    @JoinColumn(name = "factura_id")
-    private Factura factura;
+    @JoinColumn(name = "pago_id")
+    private Pago pago;
 
     @Column
     private Double costoDistribuido;
