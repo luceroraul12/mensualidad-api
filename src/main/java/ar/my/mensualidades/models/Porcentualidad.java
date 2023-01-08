@@ -20,6 +20,7 @@ public class Porcentualidad extends ModeloMensualidad{
     @Column
     private Double porcentaje;
 
-    @Column
+    @OneToOne
+    @JoinColumn(name = "factura_id")
     private Factura factura;
 }
