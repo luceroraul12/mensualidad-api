@@ -13,6 +13,7 @@ public abstract class MensualidadAbstractService<Entidad extends ModeloMensualid
 
     @Override
     public Entidad crear(Entidad modeloMensualidad) throws Exception {
+        modeloMensualidad.setId(null);
         Entidad elementoCreado =  repository.save(modeloMensualidad);
         if (elementoCreado.getId() <= 0){
             throw new Exception("no se pudo crear");
