@@ -18,7 +18,7 @@ public class PorcentualidadService extends MensualidadAbstractService<Porcentual
         if (cumplePorcentualidad(modeloMensualidad)){
             return super.crear(modeloMensualidad);
         } else {
-            throw new Exception("el porcentaje es superior a 100");
+            throw new Exception("La suma de porcentualidad es mayor a 100%");
         }
     }
 
@@ -27,7 +27,7 @@ public class PorcentualidadService extends MensualidadAbstractService<Porcentual
         if (cumplePorcentualidad(modeloMensualidad)){
             return super.modificar(modeloMensualidad);
         } else {
-            throw new Exception("el porcentaje es superior a 100");
+            throw new Exception("La suma de porcentualidad es mayor a 100%");
         }
     }
 
