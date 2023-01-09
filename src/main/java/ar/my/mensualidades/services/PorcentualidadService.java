@@ -15,7 +15,7 @@ public class PorcentualidadService extends MensualidadAbstractService<Porcentual
 
     @Override
     public Porcentualidad crear(Porcentualidad modeloMensualidad) throws Exception {
-        if (cumplePorcentualidad(modeloMensualidad)){
+        if (cumplePorcentualidadParaCrear(modeloMensualidad)){
             return super.crear(modeloMensualidad);
         } else {
             throw new Exception("La suma de porcentualidad es mayor a 100%");
@@ -24,27 +24,35 @@ public class PorcentualidadService extends MensualidadAbstractService<Porcentual
 
     @Override
     public Porcentualidad modificar(Porcentualidad modeloMensualidad) throws Exception {
-        if (cumplePorcentualidad(modeloMensualidad)){
+        if (cumplePorcentualidadParaModificar(modeloMensualidad)){
             return super.modificar(modeloMensualidad);
         } else {
             throw new Exception("La suma de porcentualidad es mayor a 100%");
         }
     }
 
-    public boolean cumplePorcentualidad(Porcentualidad porcentualidad){
+    private boolean cumplePorcentualidadParaModificar(Porcentualidad porcentualidad) {
+        List<Porcentualidad> porcentualidadAlmacenada = porcentualidadRepository.obtenerCoincidenciasPorFactura(
+                porcentualidad.getFactura().getId()
+        );
+        Double porcentajes = porcentualidadAlmacenada
+                .stream()
+                .map(Porcentualidad::getPorcentaje)
+                .reduce(Double::sum)
+                .get();
+        porcentajes+=porcentualidad.getPorcentaje();
+        return porcentajes <= 100;
+    }
+
+    public boolean cumplePorcentualidadParaCrear(Porcentualidad porcentualidad) throws Exception {
         List<Porcentualidad> porcentualidadAlmacenada = porcentualidadRepository.obtenerCoincidenciasPorUsuarioyFactura(
                 porcentualidad.getUsuario().getId(),
                 porcentualidad.getFactura().getId()
         );
         if(porcentualidadAlmacenada.isEmpty()){
             return porcentualidad.getPorcentaje() <= 100;
+        } else {
+            throw new Exception("Ya existe porcentualidad para dicho servicio y usuario");
         }
-        Double porcentajeTotalAlmacenado = porcentualidadAlmacenada.stream()
-                .map(Porcentualidad::getPorcentaje)
-                .reduce(Double::sum)
-                .get();
-        porcentajeTotalAlmacenado+= porcentualidad.getPorcentaje();
-
-        return porcentajeTotalAlmacenado <= 100.0;
     }
 }
