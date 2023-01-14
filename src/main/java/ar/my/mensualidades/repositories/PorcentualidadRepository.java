@@ -14,5 +14,8 @@ public interface PorcentualidadRepository extends JpaRepository<Porcentualidad, 
             "and p.factura.id = :idFactura")
     List<Porcentualidad> obtenerCoincidenciasPorUsuarioyFactura(@Param("idUsuario") Long idUsuario, @Param("idFactura") Long idFactura);
 
+    @Query("select p from Porcentualidad p where p.factura.id = :id")
+    List<Porcentualidad> obtenerCoincidenciasPorFactura(@Param("id") Long id);
+
 
 }
