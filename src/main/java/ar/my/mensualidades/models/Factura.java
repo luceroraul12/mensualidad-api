@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "factura")
+@Table(name = "facturas")
 public class Factura extends ModeloMensualidad{
 
     @Column

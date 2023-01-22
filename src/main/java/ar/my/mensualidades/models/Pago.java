@@ -14,7 +14,7 @@ import java.util.Objects;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "pago")
+@Table(name = "pagos")
 public class Pago extends ModeloMensualidad{
 
     @Column
