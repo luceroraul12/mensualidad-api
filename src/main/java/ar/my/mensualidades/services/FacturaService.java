@@ -1,5 +1,6 @@
 package ar.my.mensualidades.services;
 
+import ar.my.mensualidades.dto.FacturaDto;
 import ar.my.mensualidades.models.Factura;
 import ar.my.mensualidades.models.ModeloMensualidad;
 import ar.my.mensualidades.models.Pago;
@@ -11,7 +12,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class FacturaService extends MensualidadAbstractService<Factura> {
+public class FacturaService extends MensualidadAbstractService<Factura, FacturaDto> {
 
     @Autowired
     PagoRepository pagoRepository;

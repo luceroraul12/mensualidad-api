@@ -8,7 +8,7 @@ import java.io.Serializable;
  * A DTO for the {@link ar.my.mensualidades.models.PagosUsuarios} entity
  */
 @Data
-public class PagosUsuariosDto implements Serializable {
+public class PagosUsuariosDto extends Dto implements Serializable {
     private final Long id;
     private final Long idUsuario;
     private final Long idPago;
