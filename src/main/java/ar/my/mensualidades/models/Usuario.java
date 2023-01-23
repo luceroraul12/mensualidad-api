@@ -13,5 +13,5 @@ import javax.persistence.Table;
 @Table(name = "usuarios")
 public class Usuario extends ModeloMensualidad{
     @Column
-    private String nombre;
+    private String usuario;
 }
