@@ -15,10 +15,10 @@ public abstract class CrudAbstractController<Modelo extends ModeloMensualidad, E
 
 
     @PostMapping("crear")
-    public ResponseEntity<Object> crear(@RequestBody Modelo modelo){
+    public ResponseEntity<Object> crear(@RequestBody EntidadDto dto){
         ResponseEntity<Object> respuesta;
         try {
-            respuesta = new ResponseEntity<Object>(service.crear(modelo),HttpStatus.CREATED);
+            respuesta = new ResponseEntity<Object>(service.crear(dto),HttpStatus.CREATED);
         } catch (Exception e) {
             respuesta = new ResponseEntity<Object>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -26,10 +26,10 @@ public abstract class CrudAbstractController<Modelo extends ModeloMensualidad, E
     }
 
     @PutMapping("modificar")
-    public ResponseEntity<Object> modificar(@RequestBody Modelo modelo){
+    public ResponseEntity<Object> modificar(@RequestBody EntidadDto dto){
         ResponseEntity<Object> respuesta;
         try {
-            respuesta = new ResponseEntity<Object>(service.modificar(modelo),HttpStatus.OK);
+            respuesta = new ResponseEntity<Object>(service.modificar(dto),HttpStatus.OK);
         } catch (Exception e) {
             respuesta = new ResponseEntity<Object>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -37,10 +37,10 @@ public abstract class CrudAbstractController<Modelo extends ModeloMensualidad, E
     }
 
     @DeleteMapping("eliminar")
-    public ResponseEntity<Object> eliminar(@RequestBody Modelo modelo){
+    public ResponseEntity<Object> eliminar(@RequestBody EntidadDto dto){
         ResponseEntity<Object> respuesta;
         try {
-            respuesta = new ResponseEntity<Object>(service.eliminar(modelo),HttpStatus.OK);
+            respuesta = new ResponseEntity<Object>(service.eliminar(dto),HttpStatus.OK);
         } catch (Exception e) {
             respuesta = new ResponseEntity<Object>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
