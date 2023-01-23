@@ -10,7 +10,4 @@ public interface ActividadesCrud<Entidad extends ModeloMensualidad, EntidadDto> 
     public Entidad modificar(EntidadDto modeloMensualidad) throws Exception;
     public Entidad eliminar(EntidadDto modeloMensualidad) throws Exception;
     public List<Entidad> leer();
-
-    public List<EntidadDto> leerDto();
-
 }
