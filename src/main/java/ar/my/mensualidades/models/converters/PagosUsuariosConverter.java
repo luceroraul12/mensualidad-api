@@ -8,7 +8,7 @@ import ar.my.mensualidades.models.Usuario;
 
 public class PagosUsuariosConverter extends Converter<PagosUsuarios, PagosUsuariosDto>{
     @Override
-    PagosUsuariosDto toDto(PagosUsuarios pagosUsuarios) {
+    public PagosUsuariosDto toDto(PagosUsuarios pagosUsuarios) {
         return new PagosUsuariosDto(
                 pagosUsuarios.getId(),
                 pagosUsuarios.getUsuario().getId(),
@@ -17,7 +17,7 @@ public class PagosUsuariosConverter extends Converter<PagosUsuarios, PagosUsuari
     }
 
     @Override
-    PagosUsuarios toEntidad(PagosUsuariosDto pagosUsuariosDto) {
+    public PagosUsuarios toEntidad(PagosUsuariosDto pagosUsuariosDto) {
         PagosUsuarios pagosUsuarios = new PagosUsuarios();
         Pago pago = new Pago();
         Usuario usuario = new Usuario();

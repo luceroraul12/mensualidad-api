@@ -6,7 +6,7 @@ import ar.my.mensualidades.models.Pago;
 
 public class PagoConverter extends Converter<Pago, PagoDto>{
     @Override
-    PagoDto toDto(Pago pago) {
+    public PagoDto toDto(Pago pago) {
         return new PagoDto(
                 pago.getId(),
                 pago.getPago(),
@@ -17,7 +17,7 @@ public class PagoConverter extends Converter<Pago, PagoDto>{
     }
 
     @Override
-    Pago toEntidad(PagoDto dto) {
+    public Pago toEntidad(PagoDto dto) {
         Pago pago = new Pago();
         Factura factura = new Factura();
         pago.setId(dto.getId());

@@ -7,7 +7,7 @@ import ar.my.mensualidades.models.Usuario;
 
 public class PorcentajeUsuariosFacturasConverter extends Converter<PorcentajeUsuariosFacturas, PorcentajeUsuariosFacturasDto>{
     @Override
-    PorcentajeUsuariosFacturasDto toDto(PorcentajeUsuariosFacturas porcentajeUsuariosFacturas) {
+    public PorcentajeUsuariosFacturasDto toDto(PorcentajeUsuariosFacturas porcentajeUsuariosFacturas) {
         return new PorcentajeUsuariosFacturasDto(
                 porcentajeUsuariosFacturas.getId(),
                 porcentajeUsuariosFacturas.getFactura().getId(),
@@ -17,7 +17,7 @@ public class PorcentajeUsuariosFacturasConverter extends Converter<PorcentajeUsu
     }
 
     @Override
-    PorcentajeUsuariosFacturas toEntidad(PorcentajeUsuariosFacturasDto porcentajeUsuariosFacturasDto) {
+    public PorcentajeUsuariosFacturas toEntidad(PorcentajeUsuariosFacturasDto porcentajeUsuariosFacturasDto) {
         PorcentajeUsuariosFacturas entidad = new PorcentajeUsuariosFacturas();
         Usuario usuario = new Usuario();
         Factura factura = new Factura();
