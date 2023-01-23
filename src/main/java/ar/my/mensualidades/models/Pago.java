@@ -27,7 +27,7 @@ public class Pago extends ModeloMensualidad{
     private String comentario;
 
     @ManyToOne
-    @JoinColumn(name = "factura_ID",nullable = false)
+    @JoinColumn(name = "factura_id",nullable = false)
     private Factura factura;
 
 }
