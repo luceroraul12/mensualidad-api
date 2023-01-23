@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Data
 public class PagosUsuariosDto implements Serializable {
     private final Long id;
-    private final UsuarioDto usuario;
-    private final PagoDto pago;
+    private final Long idUsuario;
+    private final Long idPago;
     private final Float pagoFraccionado;
 }

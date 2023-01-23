@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Data
 public class PorcentajeUsuariosFacturasDto implements Serializable {
     private final Long id;
-    private final FacturaDto factura;
-    private final UsuarioDto usuario;
+    private final Long idFactura;
+    private final Long idUsuario;
     private final Float porcentaje;
 }

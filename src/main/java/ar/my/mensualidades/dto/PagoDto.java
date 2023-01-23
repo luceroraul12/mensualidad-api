@@ -12,6 +12,7 @@ import java.time.LocalDate;
 public class PagoDto implements Serializable {
     private final Long id;
     private final Double pago;
+    private final Long idfactura;
     private final LocalDate fechaDePago;
     private final String comentario;
 }
