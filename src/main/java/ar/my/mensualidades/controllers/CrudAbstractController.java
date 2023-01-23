@@ -1,5 +1,6 @@
 package ar.my.mensualidades.controllers;
 
+import ar.my.mensualidades.dto.Dto;
 import ar.my.mensualidades.models.ModeloMensualidad;
 import ar.my.mensualidades.services.MensualidadAbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,10 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-public abstract class CrudAbstractController<Modelo extends ModeloMensualidad> {
+public abstract class CrudAbstractController<Modelo extends ModeloMensualidad, EntidadDto extends Dto> {
 
     @Autowired
-    MensualidadAbstractService<Modelo> service;
+    MensualidadAbstractService<Modelo, EntidadDto> service;
 
 
     @PostMapping("crear")
