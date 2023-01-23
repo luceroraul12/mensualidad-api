@@ -20,7 +20,7 @@ public abstract class MensualidadAbstractService<Entidad extends ModeloMensualid
     @Override
     public Entidad crear(EntidadDto dto) throws Exception {
         dto.setId(null);
-        Entidad elementoCreado =  repository.save(converter);
+        Entidad elementoCreado =  repository.save(converter.toEntidad(dto));
         if (elementoCreado.getId() <= 0){
             throw new Exception("no se pudo crear");
         }
@@ -29,7 +29,7 @@ public abstract class MensualidadAbstractService<Entidad extends ModeloMensualid
 
     @Override
     public Entidad modificar(EntidadDto dto) throws Exception {
-        Entidad elementoModificado = repository.save(modeloMensualidad);
+        Entidad elementoModificado = repository.save(converter.toEntidad(dto));
         if (elementoModificado.getId() <= 0){
             throw new Exception("no se pudo modificar");
         }
@@ -38,11 +38,11 @@ public abstract class MensualidadAbstractService<Entidad extends ModeloMensualid
 
     @Override
     public Entidad eliminar(EntidadDto dto) throws Exception {
-        repository.deleteById(modeloMensualidad.getId());
-        if (repository.existsById(modeloMensualidad.getId())){
+        repository.deleteById(dto.getId());
+        if (repository.existsById(dto.getId())){
             throw new Exception("no se pudo eliminar");
         }
-        return modeloMensualidad;
+        return converter.toEntidad(dto);
     }
 
     @Override
