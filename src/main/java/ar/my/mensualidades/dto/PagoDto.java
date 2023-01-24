@@ -13,6 +13,7 @@ public class PagoDto extends Dto implements Serializable {
     private final Long id;
     private final Double pago;
     private final Long idfactura;
+    private final String factura;
     private final LocalDate fechaDePago;
     private final String comentario;
 }

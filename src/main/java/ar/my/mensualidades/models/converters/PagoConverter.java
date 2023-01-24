@@ -13,6 +13,7 @@ public class PagoConverter extends Converter<Pago, PagoDto>{
                 pago.getId(),
                 pago.getPago(),
                 pago.getFactura().getId(),
+                pago.getFactura().getNombre(),
                 pago.getFechaDePago(),
                 pago.getComentario()
         );
