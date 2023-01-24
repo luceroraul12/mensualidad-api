@@ -2,7 +2,9 @@ package ar.my.mensualidades.models.converters;
 
 import ar.my.mensualidades.dto.UsuarioDto;
 import ar.my.mensualidades.models.Usuario;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UsuarioConverter extends Converter<Usuario, UsuarioDto>{
     @Override
     public UsuarioDto toDto(Usuario usuario) {

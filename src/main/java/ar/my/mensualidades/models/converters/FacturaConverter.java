@@ -2,7 +2,9 @@ package ar.my.mensualidades.models.converters;
 
 import ar.my.mensualidades.dto.FacturaDto;
 import ar.my.mensualidades.models.Factura;
+import org.springframework.stereotype.Service;
 
+@Service
 public class FacturaConverter extends Converter<Factura, FacturaDto>{
     @Override
     public FacturaDto toDto(Factura factura) {

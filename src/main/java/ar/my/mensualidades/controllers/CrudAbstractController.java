@@ -51,7 +51,7 @@ public abstract class CrudAbstractController<Modelo extends ModeloMensualidad, E
     public ResponseEntity<Object> leer(){
         ResponseEntity<Object> respuesta;
         try {
-            respuesta = new ResponseEntity<Object>(service.leer(),HttpStatus.OK);
+            respuesta = new ResponseEntity<Object>(service.leerDto(),HttpStatus.OK);
         } catch (Exception e) {
             respuesta = new ResponseEntity<Object>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }

@@ -6,12 +6,11 @@ import ar.my.mensualidades.models.converters.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 public abstract class MensualidadAbstractService<Entidad extends ModeloMensualidad, EntidadDto extends Dto> implements ActividadesCrud<Entidad, EntidadDto>{
 
-    @Resource
+    @Autowired
     protected Converter<Entidad, EntidadDto> converter;
 
     @Autowired
@@ -48,5 +47,9 @@ public abstract class MensualidadAbstractService<Entidad extends ModeloMensualid
     @Override
     public List<Entidad> leer() {
         return repository.findAll();
+    }
+
+    public List<EntidadDto> leerDto(){
+        return converter.toDtoList(leer());
     }
 }

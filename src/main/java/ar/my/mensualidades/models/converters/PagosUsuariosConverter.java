@@ -1,11 +1,12 @@
 package ar.my.mensualidades.models.converters;
 
 import ar.my.mensualidades.dto.PagosUsuariosDto;
-import ar.my.mensualidades.models.Factura;
 import ar.my.mensualidades.models.Pago;
 import ar.my.mensualidades.models.PagosUsuarios;
 import ar.my.mensualidades.models.Usuario;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PagosUsuariosConverter extends Converter<PagosUsuarios, PagosUsuariosDto>{
     @Override
     public PagosUsuariosDto toDto(PagosUsuarios pagosUsuarios) {

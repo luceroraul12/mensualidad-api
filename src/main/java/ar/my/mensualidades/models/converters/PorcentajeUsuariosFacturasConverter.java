@@ -4,7 +4,9 @@ import ar.my.mensualidades.dto.PorcentajeUsuariosFacturasDto;
 import ar.my.mensualidades.models.Factura;
 import ar.my.mensualidades.models.PorcentajeUsuariosFacturas;
 import ar.my.mensualidades.models.Usuario;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PorcentajeUsuariosFacturasConverter extends Converter<PorcentajeUsuariosFacturas, PorcentajeUsuariosFacturasDto>{
     @Override
     public PorcentajeUsuariosFacturasDto toDto(PorcentajeUsuariosFacturas porcentajeUsuariosFacturas) {

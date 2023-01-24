@@ -3,7 +3,9 @@ package ar.my.mensualidades.models.converters;
 import ar.my.mensualidades.dto.PagoDto;
 import ar.my.mensualidades.models.Factura;
 import ar.my.mensualidades.models.Pago;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PagoConverter extends Converter<Pago, PagoDto>{
     @Override
     public PagoDto toDto(Pago pago) {
