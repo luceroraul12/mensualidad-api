@@ -27,7 +27,7 @@ public class PagoConverter extends Converter<Pago, PagoDto>{
         pago.setFechaDePago(dto.getFechaDePago());
         pago.setComentario(dto.getComentario());
         pago.setPago(dto.getPago());
-        factura.setId(dto.getIdfactura());
+        factura.setId(dto.getIdFactura());
         pago.setFactura(factura);
         return pago;
     }
