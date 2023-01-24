@@ -17,9 +17,9 @@ public abstract class MensualidadAbstractService<Entidad extends ModeloMensualid
     JpaRepository<Entidad, Long> repository;
 
     @Override
-    public Entidad crear(EntidadDto dto) throws Exception {
+    public EntidadDto crear(EntidadDto dto) throws Exception {
         dto.setId(null);
-        Entidad elementoCreado =  repository.save(converter.toEntidad(dto));
+        EntidadDto elementoCreado =  converter.toDto(repository.save(converter.toEntidad(dto)));
         if (elementoCreado.getId() <= 0){
             throw new Exception("no se pudo crear");
         }
@@ -27,8 +27,8 @@ public abstract class MensualidadAbstractService<Entidad extends ModeloMensualid
     }
 
     @Override
-    public Entidad modificar(EntidadDto dto) throws Exception {
-        Entidad elementoModificado = repository.save(converter.toEntidad(dto));
+    public EntidadDto modificar(EntidadDto dto) throws Exception {
+        EntidadDto elementoModificado = converter.toDto(repository.save(converter.toEntidad(dto)));
         if (elementoModificado.getId() <= 0){
             throw new Exception("no se pudo modificar");
         }
@@ -36,20 +36,17 @@ public abstract class MensualidadAbstractService<Entidad extends ModeloMensualid
     }
 
     @Override
-    public Entidad eliminar(EntidadDto dto) throws Exception {
+    public EntidadDto eliminar(EntidadDto dto) throws Exception {
         repository.deleteById(dto.getId());
         if (repository.existsById(dto.getId())){
             throw new Exception("no se pudo eliminar");
         }
-        return converter.toEntidad(dto);
+        return dto;
     }
 
     @Override
-    public List<Entidad> leer() {
-        return repository.findAll();
+    public List<EntidadDto> leer() {
+        return converter.toDtoList(repository.findAll());
     }
 
-    public List<EntidadDto> leerDto(){
-        return converter.toDtoList(leer());
-    }
 }

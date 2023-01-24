@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface ActividadesCrud<Entidad extends ModeloMensualidad, EntidadDto> {
 
-    public Entidad crear(EntidadDto modeloMensualidad) throws Exception;
-    public Entidad modificar(EntidadDto modeloMensualidad) throws Exception;
-    public Entidad eliminar(EntidadDto modeloMensualidad) throws Exception;
-    public List<Entidad> leer();
+    public EntidadDto crear(EntidadDto modeloMensualidad) throws Exception;
+    public EntidadDto modificar(EntidadDto modeloMensualidad) throws Exception;
+    public EntidadDto eliminar(EntidadDto modeloMensualidad) throws Exception;
+    public List<EntidadDto> leer();
 }

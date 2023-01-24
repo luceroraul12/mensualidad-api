@@ -19,7 +19,7 @@ public class FacturaService extends MensualidadAbstractService<Factura, FacturaD
 
     public Map<String, Set<ModeloMensualidad>> obtenerResumenFacturas(Integer mes, Integer anio){
         Map<String, Set<ModeloMensualidad>> resumenFacturas = new HashMap<>();
-        Set<ModeloMensualidad> facturasTotales = new HashSet<>(leer());
+        Set<ModeloMensualidad> facturasTotales = new HashSet<>(repository.findAll());
         Set<Pago> pagosRealizados = new HashSet<>(pagoRepository.obtenerPagosResumenMesyAnio(mes, anio));
 
         Set<ModeloMensualidad> facturasPagadas = pagosRealizados.stream()
@@ -35,11 +35,11 @@ public class FacturaService extends MensualidadAbstractService<Factura, FacturaD
     }
 
     @Override
-    public List<Factura> leer() {
-        List<Factura> facturas = repository.findAll();
+    public List<FacturaDto> leer() {
+        List<FacturaDto> facturas = converter.toDtoList(repository.findAll());
         facturas.sort(
-                Comparator.comparing(Factura::isEsRepetible)
-                        .thenComparing(Factura::getNombre));
+                Comparator.comparing(FacturaDto::isEsRepetible)
+                        .thenComparing(FacturaDto::getNombre));
         return facturas;
     }
 }
