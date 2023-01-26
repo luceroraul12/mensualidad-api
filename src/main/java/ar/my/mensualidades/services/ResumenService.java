@@ -3,13 +3,16 @@ package ar.my.mensualidades.services;
 import ar.my.mensualidades.dto.ResumenDto;
 import ar.my.mensualidades.models.Factura;
 import ar.my.mensualidades.models.Pago;
+import ar.my.mensualidades.models.converters.FacturaConverter;
+import ar.my.mensualidades.models.converters.PagoConverter;
 import ar.my.mensualidades.repositories.FacturaRepository;
 import ar.my.mensualidades.repositories.PagoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.comparator.Comparators;
 
-import java.util.*;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,6 +23,12 @@ public class ResumenService {
     @Autowired
     private FacturaRepository facturaRepository;
 
+    @Autowired
+    private FacturaConverter facturaConverter;
+
+    @Autowired
+    private PagoConverter pagoConverter;
+
     public ResumenDto obtenerResumen(Integer mes, Integer anio){
         ResumenDto resumen;
         List<Pago> pagosRealizados = pagoRepository.obtenerPagosResumenMesyAnio(mes, anio);
@@ -27,8 +36,6 @@ public class ResumenService {
 
         resumen = generarResumen(pagosRealizados, facturasExistentes);
         return  resumen;
-
-
     }
     public ResumenDto generarResumen(List<Pago> pagosRealizados, List<Factura> facturasExistentes){
         Set<Factura> facturasPagadas = pagosRealizados.stream()
@@ -57,6 +64,9 @@ public class ResumenService {
                                     ? 0
                                     : 1)
                 .collect(Collectors.toCollection(LinkedHashSet::new));
-        return new ResumenDto(facturasPagadas, facturasImpagas, pagosRealizados);
+        return new ResumenDto(
+                facturaConverter.toDtoList(facturasPagadas.stream().toList()),
+                facturaConverter.toDtoList(facturasImpagas.stream().toList()),
+                pagoConverter.toDtoList(pagosRealizados));
     }
 }
