@@ -20,5 +20,18 @@ public class PorcentajeUsuariosFacturas extends ModeloMensualidad{
     private Usuario usuario;
 
     @Column(name = "porcentaje")
-    private Float porcentaje;
+    private Double porcentaje;
+
+    public PorcentajeUsuariosFacturas() {
+    }
+
+    public PorcentajeUsuariosFacturas(Long idFactura, Long idUsuario, Double porcentaje) {
+        Factura factura = new Factura();
+        factura.setId(idFactura);
+        Usuario usuario = new Usuario();
+        usuario.setId(idUsuario);
+        this.factura = factura;
+        this.usuario = usuario;
+        this.porcentaje = porcentaje;
+    }
 }

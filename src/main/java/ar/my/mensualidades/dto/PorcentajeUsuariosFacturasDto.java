@@ -13,5 +13,5 @@ public class PorcentajeUsuariosFacturasDto extends Dto implements Serializable {
     private final Long idFactura;
     private final Long idUsuario;
     private final String usuario;
-    private final Float porcentaje;
+    private final Double porcentaje;
 }

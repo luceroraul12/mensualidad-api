@@ -8,7 +8,7 @@ public class PorcentajesChartsDto {
     private final Double number;
     private final Extra extra;
     @Data
-    private class Extra {
+    public static class Extra {
         private final String code;
     }
 }
