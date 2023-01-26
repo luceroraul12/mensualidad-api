@@ -14,6 +14,7 @@ public class PorcentajeUsuariosFacturasConverter extends Converter<PorcentajeUsu
                 porcentajeUsuariosFacturas.getId(),
                 porcentajeUsuariosFacturas.getFactura().getId(),
                 porcentajeUsuariosFacturas.getUsuario().getId(),
+                porcentajeUsuariosFacturas.getUsuario().getUsuario(),
                 porcentajeUsuariosFacturas.getPorcentaje()
         );
     }
